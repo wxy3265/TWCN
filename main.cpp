@@ -7,6 +7,11 @@ using namespace std;
 
 int main (int argc, char *argv[]) //argv[1]为文件地址
 {
+	
+	if (argv[1] == NULL) {
+		cerr << "未指明文件地址" << endl;
+		return 1;
+	}//错误处理
 
 	string a; //创建储存字符串的变量a
 	char c; //创建直接性储存输入字符的临时过渡变量c
@@ -29,8 +34,8 @@ int main (int argc, char *argv[]) //argv[1]为文件地址
 
 	char ch;//用于储存输入字符
 
-	while(!fin.eof())	{
-		fin.read(&ch, 1);
+	while(fin.read(&ch, 1))	{
+		//fin.read(&ch, 1);
 		a += ch;
 	}//读取文件至string类变量a
 	
@@ -49,7 +54,7 @@ int main (int argc, char *argv[]) //argv[1]为文件地址
 
 		if (c == '\b'){
 			
-			hlong = a.size();
+			hlong = a.size() - 1;
 			
 			if (a.back() == '\n') {
 				a.erase(hlong); //删除a中的最后一个字符
@@ -80,7 +85,7 @@ int main (int argc, char *argv[]) //argv[1]为文件地址
 //关闭已使用的文件
 	fout.close();
 	fin.close();
-
+	
 	return 0;
 
 }
@@ -90,5 +95,5 @@ Log:
 	~2017/8/3 18:50	创建项目
 	~2017/8/3 20:50 完成基本文输入
 	~2017/8/5 21:15 完成GitHub库的创建与上传
+	~2017/8/10 9:28 修复bug*2
 */
-
